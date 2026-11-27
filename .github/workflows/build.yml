@@ -1,0 +1,49 @@
+name: Build papers
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+env:
+  TECTONIC_VERSION: "0.17.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Tectonic packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: tectonic-${{ env.TECTONIC_VERSION }}-${{ hashFiles('**/*.tex') }}
+          restore-keys: tectonic-${{ env.TECTONIC_VERSION }}-
+
+      - name: Install Tectonic (official release binary)
+        run: |
+          v="$TECTONIC_VERSION"
+          url="https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%40${v}/tectonic-${v}-x86_64-unknown-linux-musl.tar.gz"
+          curl -fsSL "$url" -o tectonic.tar.gz
+          tar -xzf tectonic.tar.gz
+          sudo install -m 0755 tectonic /usr/local/bin/tectonic
+          tectonic --version
+
+      - name: Build PDFs
+        run: ./build.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: papers
+          path: out/*.pdf
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" out/*.pdf --title "$GITHUB_REF_NAME" --notes "PDFs built from ${GITHUB_SHA::7}."
