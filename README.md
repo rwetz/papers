@@ -8,6 +8,7 @@ project (see each paper's provenance appendix).
 |---|---|---|
 | BibleLM: Retrieval, Graph Methods and a From-Scratch Language Model in an Offline Study Bible | [biblelm](https://github.com/rwetz/biblelm) | [biblelm.pdf](https://github.com/rwetz/papers/releases/latest/download/biblelm.pdf) |
 | Logscope: A Sound Trigram Index for Searching Live Log Streams | Logscope (private source) | [logscope.pdf](https://github.com/rwetz/papers/releases/latest/download/logscope.pdf) |
+| Axon: A Single-Binary Engine for Small Tabular, Image and Text Models, with a Second-Order Tree Booster | [axon](https://github.com/rwetz/axon) | [axon.pdf](https://github.com/rwetz/papers/releases/latest/download/axon.pdf) |
 | Churn Risk: A Small Multilayer Perceptron for Predicting Customer Attrition | Axon demo on synthetic data | [churn-risk.pdf](https://github.com/rwetz/papers/releases/latest/download/churn-risk.pdf) |
 
 The PDF links always point to the latest release.
