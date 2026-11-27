@@ -31,4 +31,13 @@ Drafted with an AI assistant (Claude) from each project's source code, design
 notes and run artifacts, then checked against them. Each paper states this in
 its preparation note and lists anything that could not be confirmed.
 
+## License
+
+The papers (their text, figures and LaTeX sources) are licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): you may share and
+adapt them, including commercially, as long as you credit the author. See
+[LICENSE](LICENSE). This covers the papers only, not the software they
+describe; each project keeps its own license, and Logscope's source remains
+private with all rights reserved.
+
 Ryan Wetzstein
